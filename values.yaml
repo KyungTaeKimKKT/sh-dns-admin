@@ -58,6 +58,11 @@ serviceAccount:
   annotations: {}
   name: ""
 
+### ✅ ingress-health.yaml 용
+### ingress.yaml 에서도  true면 맨 앞단에 추가함.
+ingressHealth:
+  enabled: true
+
 ### ✅ ingress.yaml 용
 ingress:
   enabled: true
