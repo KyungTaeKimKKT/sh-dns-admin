@@ -28,6 +28,17 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
+          ### ingressHealth 가 enabled 되어 있으면, 추가함.
+          {{- if $.Values.ingressHealth.enabled }}
+          - path: /k3s-health
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $.Release.Name }}-{{ $.Values.ingressHealth.namePostfix }}
+                port:
+                  number: 80
+          {{- end }}
+
           {{- range .paths }}
           - path: {{ .path }}
             {{- with .pathType }}
